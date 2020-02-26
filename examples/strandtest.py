@@ -18,6 +18,7 @@ class Strip(object):
         self.brightness = 255
         self.invert = False
         self.channel = 0
+        self.leds = Adafruit_NeoPixel(self.count, self.pin, self.freq_hz, self.dma, self.invert, self.brightness, self.channel)
         
 
 # Define functions which animate LEDs in various ways.
@@ -96,8 +97,6 @@ if __name__ == '__main__':
     strips.append(Strip(5, 18))
 
     for strip in strips:
-        # Create NeoPixel object with appropriate configuration.
-        strip.leds = Adafruit_NeoPixel(strip.count, strip.pin, strip.freq_hz, strip.dma, strip.invert, strip.brightness, strip.channel)
         # Intialize the library (must be called once before other functions).
         strip.leds.begin()
 
