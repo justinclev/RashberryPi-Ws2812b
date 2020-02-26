@@ -93,34 +93,33 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
 
-    strips = []
-    strips.append(Strip(5, 18))
+    strip = Strip(5, 18)
 
-    for strip in strips:
-        # Intialize the library (must be called once before other functions).
-        strip.leds.begin()
+    # for strip in strips:
+    # Intialize the library (must be called once before other functions).
+    strip.leds.begin()
 
-        print ('Press Ctrl-C to quit.')
-        if not args.clear:
-            print('Use "-c" argument to clear LEDs on exit')
+    print ('Press Ctrl-C to quit.')
+    if not args.clear:
+        print('Use "-c" argument to clear LEDs on exit')
 
-        try:
+    try:
 
-            while True:
-                print ('Color wipe animations.')
-                colorFlash(strip.leds, Color(255, 0, 0)) # Red Flash
-                # colorWipe(strip, Color(255, 0, 0))  # Red wipe
-                # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-                # colorWipe(strip, Color(0, 0, 255))  # Green wipe
-                # print ('Theater chase animations.')
-                # theaterChase(strip, Color(127, 127, 127))  # White theater chase
-                # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
-                # theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
-                # print ('Rainbow animations.')
-                # rainbow(strip)
-                # rainbowCycle(strip)
-                # theaterChaseRainbow(strip)
+        while True:
+            print ('Color wipe animations.')
+            colorFlash(strip.leds, Color(255, 0, 0)) # Red Flash
+            # colorWipe(strip, Color(255, 0, 0))  # Red wipe
+            # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
+            # colorWipe(strip, Color(0, 0, 255))  # Green wipe
+            # print ('Theater chase animations.')
+            # theaterChase(strip, Color(127, 127, 127))  # White theater chase
+            # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
+            # theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
+            # print ('Rainbow animations.')
+            # rainbow(strip)
+            # rainbowCycle(strip)
+            # theaterChaseRainbow(strip)
 
-        except KeyboardInterrupt:
-            if args.clear:
-                colorWipe(strip.leds, Color(0,0,0), 10)
+    except KeyboardInterrupt:
+        if args.clear:
+            colorWipe(strip.leds, Color(0,0,0), 10)
