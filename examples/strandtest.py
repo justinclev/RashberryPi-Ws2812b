@@ -94,11 +94,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     strip = Strip(5, 18)
-    strip.leds = Adafruit_NeoPixel(strip.count, strip.pin, strip.freq_hz, strip.dma, strip.invert, strip.brightness, strip.channel)
+    leds = Adafruit_NeoPixel(strip.count, strip.pin, strip.freq_hz, strip.dma, strip.invert, strip.brightness, strip.channel)
        
     # for strip in strips:
     # Intialize the library (must be called once before other functions).
-    strip.leds.begin()
+    leds.begin()
 
     print ('Press Ctrl-C to quit.')
     if not args.clear:
@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
         while True:
             print ('Color wipe animations.')
-            colorFlash(strip.leds, Color(255, 0, 0)) # Red Flash
+            colorFlash(leds, Color(255, 0, 0)) # Red Flash
             # colorWipe(strip, Color(255, 0, 0))  # Red wipe
             # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
             # colorWipe(strip, Color(0, 0, 255))  # Green wipe
@@ -123,4 +123,4 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         if args.clear:
-            colorWipe(strip.leds, Color(0,0,0), 10)
+            colorWipe(leds, Color(0,0,0), 10)
