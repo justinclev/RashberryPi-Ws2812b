@@ -10,8 +10,15 @@ from neopixel import *
 import argparse
 
 class Strip(object):
-    pass
-
+    def __init__(self, count, pin):  
+        self.count = count
+        self.pin = pin
+        self.freq_hz = 800000
+        self.dma = 255
+        self.brightness = 255
+        self.invert = False
+        self.channel = 0
+        
 
 # Define functions which animate LEDs in various ways.
 def colorFlash(strip, color, wait_ms=50):
@@ -85,41 +92,36 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--clear', action='store_true', help='clear the display on exit')
     args = parser.parse_args()
 
-    strip = Strip()
-    strip.Count = 5
-    strip.Pin = 18
-    strip.Freq_Hz = 800000
-    strip.DMA = 255
-    strip.Brightness = 255
-    strip.Invert = False
-    strip.Channel = 0
+    strips = []
+    strips.append(Strip(5, 18))
 
-    # Create NeoPixel object with appropriate configuration.
-    strip.leds = Adafruit_NeoPixel(strip.Count, strip.Pin, strip.Freq_Hz, strip.DMA, strip.Invert, strip.Brightness, strip.Channel)
-    # Intialize the library (must be called once before other functions).
-    strip.leds.begin()
+    for strip in strips:
+        # Create NeoPixel object with appropriate configuration.
+        strip.leds = Adafruit_NeoPixel(strip.Count, strip.Pin, strip.Freq_Hz, strip.DMA, strip.Invert, strip.Brightness, strip.Channel)
+        # Intialize the library (must be called once before other functions).
+        strip.leds.begin()
 
-    print ('Press Ctrl-C to quit.')
-    if not args.clear:
-        print('Use "-c" argument to clear LEDs on exit')
+        print ('Press Ctrl-C to quit.')
+        if not args.clear:
+            print('Use "-c" argument to clear LEDs on exit')
 
-    try:
+        try:
 
-        while True:
-            print ('Color wipe animations.')
-            colorFlash(strip.leds, Color(255, 0, 0)) # Red Flash
-            # colorWipe(strip, Color(255, 0, 0))  # Red wipe
-            # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
-            # colorWipe(strip, Color(0, 0, 255))  # Green wipe
-            # print ('Theater chase animations.')
-            # theaterChase(strip, Color(127, 127, 127))  # White theater chase
-            # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
-            # theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
-            # print ('Rainbow animations.')
-            # rainbow(strip)
-            # rainbowCycle(strip)
-            # theaterChaseRainbow(strip)
+            while True:
+                print ('Color wipe animations.')
+                colorFlash(strip.leds, Color(255, 0, 0)) # Red Flash
+                # colorWipe(strip, Color(255, 0, 0))  # Red wipe
+                # colorWipe(strip, Color(0, 255, 0))  # Blue wipe
+                # colorWipe(strip, Color(0, 0, 255))  # Green wipe
+                # print ('Theater chase animations.')
+                # theaterChase(strip, Color(127, 127, 127))  # White theater chase
+                # theaterChase(strip, Color(127,   0,   0))  # Red theater chase
+                # theaterChase(strip, Color(  0,   0, 127))  # Blue theater chase
+                # print ('Rainbow animations.')
+                # rainbow(strip)
+                # rainbowCycle(strip)
+                # theaterChaseRainbow(strip)
 
-    except KeyboardInterrupt:
-        if args.clear:
-            colorWipe(strip.leds, Color(0,0,0), 10)
+        except KeyboardInterrupt:
+            if args.clear:
+                colorWipe(strip.leds, Color(0,0,0), 10)
