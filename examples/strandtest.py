@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     for strip in strips:
         # Create NeoPixel object with appropriate configuration.
-        strip.leds = Adafruit_NeoPixel(strip.Count, strip.Pin, strip.Freq_Hz, strip.DMA, strip.Invert, strip.Brightness, strip.Channel)
+        strip.leds = Adafruit_NeoPixel(strip.count, strip.pin, strip.freq_hz, strip.dma, strip.invert, strip.brightness, strip.channel)
         # Intialize the library (must be called once before other functions).
         strip.leds.begin()
 
