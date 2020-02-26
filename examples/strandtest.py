@@ -27,7 +27,6 @@ def colorFlash(strip, color, wait_ms=50):
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, color)
     strip.show()
-    time.sleep(wait_ms/1000.0)
 
 def colorWipe(strip, color, wait_ms=50):
     """Wipe color across display a pixel at a time."""
